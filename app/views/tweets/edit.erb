@@ -1,0 +1,10 @@
+<h1>Edit Tweet</h1>
+<%= @tweet.content %>
+
+<%if @tweet.user_id == session[:user_id]%>
+    <form method="POST" action="/tweets/<%= @tweet.id %>">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <input type="text" name="content" value="<%= @tweet.content%>">
+        <input type="submit" value="submit">
+    </form>
+<%end%>
