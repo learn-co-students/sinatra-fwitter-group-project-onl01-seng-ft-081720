@@ -4,7 +4,6 @@ class UsersController < ApplicationController
         @user = user.find_by_slug(params[:slug])
         erb :"users/show"
     end
-
     
     get '/signup' do
         if logged_in?
@@ -44,7 +43,7 @@ class UsersController < ApplicationController
 
     get '/logout' do
         if logged_in?
-          session.destroy
+          session.clear
           redirect to '/login'
         else
           redirect to '/'
