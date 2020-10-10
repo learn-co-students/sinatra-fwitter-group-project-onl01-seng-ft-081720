@@ -9,15 +9,13 @@ class TweetsController < ApplicationController
         end
     end
 
-      get '/tweets/new' do
+  get '/tweets/new' do
         if logged_in?
             erb :'tweets/new'
         else
             redirect to '/login'
         end
     end
-
-
 
     post '/tweets' do
         if logged_in?
@@ -35,10 +33,11 @@ class TweetsController < ApplicationController
             redirect to "/login"
         end
     end
+    
   get '/tweets/:id' do
         if logged_in?
           @tweet = Tweet.find_by_id(params[:id])
-          erb :'tweets/show_tweet'
+          erb :'tweets/show'
         else
           redirect to '/login'
         end
@@ -48,7 +47,7 @@ class TweetsController < ApplicationController
         if logged_in?
           @tweet = Tweet.find_by_id(params[:id])
           if @tweet && @tweet.user == current_user
-            erb :'tweets/edit_tweet'
+            erb :'tweets/edit'
           else
             redirect to '/tweets'
           end
